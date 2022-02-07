@@ -1,0 +1,43 @@
+MENU TITLE MENU PXE
+
+LABEL Clonezilla Rapido (Opciones prefijadas)
+
+MENU LABEL Clonezilla Rapido (Opciones prefijadas)
+KERNEL /iso/clonezilla/live/vmlinuz
+APPEND		initrd=/iso/clonezilla/live/initrd.img boot=live username=user union=overlay config components noswap edd=on nomodeset nodmraid locales=es_ES.UTF-8 keyboard-layouts=NONE ocs_live_run="ocs-live-general" ocs_live_extra_param="" ocs_live_batch=no net.ifnames=0 nosplash noprompt fetch=ftp://192.168.50.2/filesystem.squashfs ocs_prerun1="dhclient -v eth0" ocs_prerun2="sleep 2" ocs_prerun3="mount -t cifs -o user=administrador //192.168.50.2/imatges /home/partimag" ocs_prerun4="sleep 2"
+
+
+LABEL Clonezilla Normal
+
+MENU LABEL Clonezilla Normal
+KERNEL /iso/clonezilla/live/vmlinuz
+APPEND		initrd=/iso/clonezilla/live/initrd.img boot=live username=user union=overlay config components quiet noswap edd=on nomodeset nodmraid locales= keyboard-layouts= ocs_live_run="ocs-live-general" ocs_live_extra_param="" ocs_live_batch=no net.ifnames=0 nosplash noprompt fetch=ftp://192.168.50.2/filesystem.squashfs
+
+
+
+LABEL GParted Live
+  MENU LABEL GParted Live (Default settings)
+  kernel /iso/gparted/live/vmlinuz
+  append initrd=/iso/gparted/live/initrd.img boot=live union=overlay username=user config components noswap  ip= net.ifnames=0  nosplash fetch=ftp://192.168.50.5/gparted.squashfs acpi=off
+  TEXT HELP
+  * Boot menu for BIOS machine
+  * GParted live version: 0.32.0-1-amd64. Live version maintainer: Steven Shiau
+  * Disclaimer: GParted live comes with ABSOLUTELY NO WARRANTY
+  ENDTEXT
+
+
+
+LABEL Ubuntu Mate
+
+MENU LABEL Ubuntu Mate 16.04
+KERNEL /iso/ubuntu/casper/vmlinuz
+APPEND          initrd=/iso/ubuntu/casper/initrd.lz boot=casper text vga=789 netboot=nfs nfsroot=192.168.50.5:/var/lib/tftpboot/iso/ubuntu
+TEXT HELP
+Iniciar Ubuntu Mate
+ENDTEXT
+
+
+
+
+# --------------------NOTAS:---------------------------------------------
+# append por tftp, da problemas en algunas aulas. -> utilizar ftp o http

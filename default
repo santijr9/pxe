@@ -1,0 +1,47 @@
+path /menu
+UI vesamenu.c32
+
+DEFAULT BootLocal
+
+prompt 0
+TIMEOUT 100
+
+menu rows            14
+menu vshift          6
+menu color border    0 #ffffffff #ee000000 std
+menu color title     0 #ffffffff #ee000000 std
+menu color sel       0 #ffffffff #85000000 std
+menu color unsel     0 #ffffffff #ee000000 std
+menu color pwdheader 0 #ff000000 #99ffffff rev
+menu color pwdborder 0 #ff000000 #99ffffff rev
+menu color pwdentry  0 #ff000000 #99ffffff rev
+menu color hotkey    0 #ff00ff00 #ee000000 std
+menu color hotsel    0 #ffffffff #85000000 std
+menu resolution      800 600
+menu background      pxe.png
+
+MENU TITLE PXE Institut
+
+LABEL Inici des de primer disc dur
+MENU LABEL Primer disc dur
+localboot 0
+
+LABEL Inici des de segon disc dur
+MENU LABEL Segon disc dur
+    KERNEL chain.c32
+    APPEND hd1 0
+
+
+
+LABEL Administrador
+MENU LABEL Eines Administradors Xarxa 
+MENU PASSWD $1$WF53md4a$zjWHfu70C02ymJjxj/1/P.
+KERNEL vesamenu.c32
+APPEND /pxelinux.cfg/submenu.menu
+
+
+LABEL poweroff
+MENU LABEL Apagar l'ordinador
+COM32 poweroff.c32
+APPEND -w
+
